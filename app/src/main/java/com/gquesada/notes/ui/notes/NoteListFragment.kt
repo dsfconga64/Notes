@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -20,22 +21,20 @@ class NoteListFragment : Fragment() {
 
     private lateinit var viewModel: NoteListViewModel
     private lateinit var notesRecyclerView: RecyclerView
-
-    private val adapter by lazy {
-        NoteListAdapter(
-            onItemLongClicked = { item -> onListItemClicked(item) }
-        )
-    }
+    private val adapter by lazy { NoteListAdapter(
+        onItemLongClicked = { item -> onListItemClicked(item) }
+    ) }
+    private lateinit var addNoteButton: Button
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
+        inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_note_list, container, false)
         initViews(view)
         viewModel = ViewModelProvider(this)[NoteListViewModel::class.java]
         observe()
+        // Inflate the layout for this fragment
         return view
     }
 
@@ -46,14 +45,13 @@ class NoteListFragment : Fragment() {
 
     private fun initViews(view: View) {
         with(view) {
+            addNoteButton = findViewById<Button>(R.id.btn_add_note)
+            addNoteButton.setOnClickListener {
+                navigateToFragment(NoteAddFragment())
+            }
             notesRecyclerView = findViewById(R.id.notes_list)
             notesRecyclerView.adapter = adapter
-            notesRecyclerView.addItemDecoration(
-                DividerItemDecoration(
-                    context,
-                    RecyclerView.VERTICAL
-                )
-            )
+            notesRecyclerView.addItemDecoration(DividerItemDecoration(context, RecyclerView.VERTICAL))
             notesRecyclerView.layoutManager =
                 LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         }
@@ -67,6 +65,12 @@ class NoteListFragment : Fragment() {
 
     private fun onListItemClicked(noteModel: NoteModel) {
         Toast.makeText(context, "${noteModel.title} was clicked", Toast.LENGTH_LONG).show()
-        // Todo remove item
+        viewModel.deleteNote(noteModel.id)
+    }
+
+    private fun navigateToFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 }

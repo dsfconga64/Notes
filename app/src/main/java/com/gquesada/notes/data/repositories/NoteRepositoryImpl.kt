@@ -10,7 +10,7 @@ import com.gquesada.notes.domain.repositories.NoteRepository
 class NoteRepositoryImp(
     private val localNotesDataSource: LocalNoteDataSource
 ): NoteRepository {
-    override fun getNotes(): List<NoteModel> {
+    override fun getAllNotes(): List<NoteModel> {
         return localNotesDataSource.getAllNotes()
             .map { item -> item.toNote() }
     }
