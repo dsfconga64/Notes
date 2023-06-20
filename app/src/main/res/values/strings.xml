@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Notes</string>
+    <string name="add_new_note">Add New Note</string>
+    <string name="label_id">Id</string>
+    <string name="label_title">Title</string>
+    <string name="label_description">Description</string>
+    <string name="label_tag_id">Tag Id</string>
+    <string name="label_tag_title">Tag Title</string>
+    <string name="btn_save_note">Save New Note</string>
+    <string name="btn_cancel_save">Cancel</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
