@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Notas</string>
+
+    <!--    Note List-->
+    <string name="add_new_note">Agregar Nueva Nota</string>
+
+    <!--    Add Note-->
+    <string name="label_id">Id</string>
+    <string name="label_title">Titulo</string>
+    <string name="label_description">Descripcion</string>
+    <string name="label_tag_id">Id de Etiqueta</string>
+    <string name="label_tag_title">Titulo de Etiqueta</string>
+    <string name="btn_save_note">Guardar Nueva Nota</string>
+    <string name="btn_cancel_save">Cancelar</string>
+</resources>

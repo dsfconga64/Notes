@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="note_item_padding">16dp</dimen>
+    <dimen name="normal_padding">24dp</dimen>
+    <dimen name="bth_height">64dp</dimen>
 </resources>
